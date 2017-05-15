@@ -7,7 +7,7 @@
       <input type="button" value="play" @click="play">
       <input type="button" value="stop" @click="stop">
     </div>
-</div>
+  </div>  
 </template>
 
 
@@ -67,20 +67,46 @@
   }
 </script>
 
-<style media="screen">
+<style lang="scss">
+
+  $unit: 16px*3;
+  $vunit: $unit * 2 / 5;
+  $hvunit: $vunit / 2;
+  $gap: 2*$vunit;
+  $staff-clr: #999;
 
   .io{
-    background-color: rgba(255,02,0,0.1);
-  }
+      background-color: rgba(255,02,0,0.1)
+    }
   .part{
     height: 300px;
     display: inline-block;
     box-shadow: 0 0 10px black;
-  }   
-  .bouttons{
-    position: relative;
-    left: 50px ; 
-    top: 350px;
+    background-image:
+      linear-gradient(180deg,
+        $staff-clr 0,
+        $staff-clr 1px,
+        transparent 1px,
+        transparent $vunit,
+        $staff-clr $vunit,
+        $staff-clr $vunit + 1px,
+        transparent $vunit + 1px,
+        transparent $vunit * 2,
+        $staff-clr $vunit * 2,
+        $staff-clr $vunit * 2 + 1px,
+        transparent $vunit * 2 + 1px,
+        transparent $vunit * 3,
+        $staff-clr $vunit * 3,
+        $staff-clr $vunit * 3 + 1px,
+        transparent $vunit * 3 + 1px,
+        transparent $vunit * 4,
+        $staff-clr $vunit * 4,
+        $staff-clr $vunit * 4 + 1px,
+        transparent $vunit * 4 + 1px);
+    background-size: 100% $gap + $vunit * 4
   }
+  .bouttons{
+
+    }
 
 </style>

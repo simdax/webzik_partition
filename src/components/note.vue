@@ -1,5 +1,5 @@
 <template id="note">
-    <input  class="note" min=0 max=7 type="range" step="1" v-model="n" >
+    <input  class="note" min=0 max=15 type="range" step="1" v-model="n" >
 </template>
 
 <script type="text/javascript">
@@ -29,7 +29,7 @@
 <style media="screen">
  
 .green{
-  background-color: green
+  background-color: green !important
 }
 
 .note{
@@ -40,7 +40,7 @@
   margin: 0 -30px; 
   -webkit-appearance: none;
   transform: rotate(270deg) scaleX(2) translateX(-60px);
-  /*background-color: rgba(255,0,0,0.1);*/
+  background-color: transparent;
   outline: none;
 }
 
@@ -48,8 +48,7 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 500px;
   height: 100%;
   cursor: pointer;
-  animate: 0.2s;
-  background-color: transparent;
+  /*animate: 0.2s;*/
 }
 input[type=range]::-webkit-slider-thumb {
   height: 20px;
