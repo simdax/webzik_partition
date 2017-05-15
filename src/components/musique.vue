@@ -1,16 +1,19 @@
 <template id="">
-  <div class="">
-    <note v-for="(v,k,i) in melodie" :index=k :note=v @change="update(k)"></note>
-    <input type="button" value="play" @click="play">
-    <input type="button" value="stop" @click="stop">
-    <div class="alert">
-
+  <div class="io">    
+    <div class="part">
+      <note v-for="(v,k,i) in melodie" :index=k :note=v @change="update(k)"></note>
     </div>
-  </div>
+    <div class="bouttons">
+      <input type="button" value="play" @click="play">
+      <input type="button" value="stop" @click="stop">
+    </div>
+</div>
 </template>
 
 
 <script type="text/javascript">
+
+  import Morceau from './morceau.js';
 
   import Tone from 'tone';
   var son = new Tone.Synth().toMaster();
@@ -21,26 +24,41 @@
     components:{note},
     data(){
       return {
+        count: 0,
         sequence: new Tone.Sequence(function(t,v){
-          console.log(this.progress, v);
-        }),
-        melodie:[8,7,5,1,4]
+          this.getChild(this.count-1).classList.remove("green");
+          this.getChild(this.count).classList.add("green");     
+          this.count += 1;
+        }.bind(this),[],"4n"),
+        melodie:[1,2,3,1,0,5,1],
       }
     },
     mounted(){
+      
+      this.children = this.$children.map((v)=>{ return v.$el });
+
       this.sequence.removeAll();
       this.melodie.forEach((v,i)=>{
-        console.log(i,v);
         this.sequence.add(i,v)
       });
       this.sequence.loop=false;
+      this.a = new Morceau(this.sequence);
+      var duration = this.a.getDuration();
+      this.sequence.loopEnd = duration;
+      this.sequence.loop = true;
     },
     methods:{
+      getChild(i){
+        var index = Math.abs(i % this.melodie.length);
+        return this.children[index];
+      },
       update(index,val){
         this.sequence.at(index,parseInt(val));
       },
       stop(){
         this.sequence.stop();
+        this.getChild(this.count-1).classList.remove("green");    
+        this.count = 0;
       },
       play(){
         this.sequence.start();
@@ -50,7 +68,19 @@
 </script>
 
 <style media="screen">
-  .active{
-    background: green
+
+  .io{
+    background-color: rgba(255,02,0,0.1);
   }
+  .part{
+    height: 300px;
+    display: inline-block;
+    box-shadow: 0 0 10px black;
+  }   
+  .bouttons{
+    position: relative;
+    left: 50px ; 
+    top: 350px;
+  }
+
 </style>
