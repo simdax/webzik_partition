@@ -60,7 +60,12 @@
         this.count = 0;
       },
       play(){
-        this.musique.sequence.start("1n");
+        // Tone.Transport.schedule((t)=>{
+        //   console.log(t);
+        //    let bob = new Tone.TimelineBase(t)
+        //    console.log(bob);
+        // })
+          this.musique.sequence.start("@1n");
       }
     }
   }
