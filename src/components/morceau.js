@@ -8,11 +8,16 @@ let Morceau = function (m,root,parent) {
     return Tone.Frequency(note+root,"midi").toNote()
   });
   this.sequence= new Tone.Sequence(function(t,v){
-    parent.getChild(parent.count-1).classList.remove("green");
-    parent.getChild(parent.count).classList.add("green");     
-    parent.count += 1;
+    Tone.Draw.schedule(()=>{
+      parent.getChild(parent.count-1).classList.remove("green");
+      parent.getChild(parent.count).classList.add("green");     
+      parent.count += 1;      
+    }, t);
     console.log(v,t);
-    this.son.triggerAttackRelease(v,"4n",t);  
+     if (this.son instanceof Tone.Noise) {  this.son.triggerAttackRelease("4n",t);  }
+      else{
+        this.son.triggerAttackRelease(v,"4n",t);  
+      }
   }.bind(this),mel,"4n");
 
  this.sequence.loopEnd = this.getDuration();
