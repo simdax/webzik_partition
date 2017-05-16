@@ -1,5 +1,5 @@
 <template id="">
-  <div class="io">    
+  <div class="boiteazik">    
     <div class="part">
       <note v-for="(v,k,i) in melodie" :index=k :key=i :note=v @change="update(k)"></note>
     </div>
@@ -60,7 +60,7 @@
         this.count = 0;
       },
       play(){
-        this.musique.sequence.start();
+        this.musique.sequence.start("1n");
       }
     }
   }
@@ -74,10 +74,12 @@
   $gap: 2*$vunit;
   $staff-clr: #999;
 
-  .io{
-      display: inline-block;
+  .boiteazik{
+      // display: inline-block;
       background-color: rgba(red,0.1);
-      margin: 10px; 
+      width: 45vw;
+      height: 40vh;
+      margin: 15px; 
     }
   .part{
     height: 200px;
