@@ -13,6 +13,8 @@
 
 <script type="text/javascript">
 
+  import $ from 'jqueryui';
+
   import Morceau from './morceau.js';
 
   import Tone from 'tone';
@@ -76,6 +78,7 @@
   $staff-clr: #999;
 
   .io{
+      display: inline-block;
       background-color: rgba(255,02,0,0.1)
     }
   .part{

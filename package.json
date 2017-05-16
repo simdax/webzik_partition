@@ -6,11 +6,15 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "start": "npm build && node app.js"
   },
   "dependencies": {
     "bootstrap-vue": "^0.15.8",
+    "express": "^4.15.2",
+    "jqueryui": "^1.11.1",
     "node-sass": "^4.5.2",
+    "path": "^0.12.7",
     "pug": "^2.0.0-rc.1",
     "tone": "^0.10.0",
     "vue": "^2.2.1"
