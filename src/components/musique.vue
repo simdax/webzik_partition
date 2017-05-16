@@ -62,7 +62,7 @@
         return this.children[index];
       },
       update(index,val){
-        this.sequence.at(index,Tone.Frequency(parseInt(val)+60,"midi").toNote());
+        this.musique.sequence.at(index,Tone.Frequency(parseInt(val)+60,"midi").toNote());
       },
       stop(){
         this.musique.sequence.stop();
