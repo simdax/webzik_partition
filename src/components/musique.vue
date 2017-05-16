@@ -75,44 +75,43 @@
   $staff-clr: #999;
 
   .boiteazik{
-      // display: inline-block;
       background-color: rgba(red,0.1);
-      width: 45%;
-      height: 40%;
-      margin: 15px; 
+      width: 45vw;
+      height: 40vh;
+      // margin: 15px; 
     }
   .part{
-    height: 200px;
-    display: inline-block;
+    transform: rotate(270deg);
     box-shadow: 0 0 10px black;
-    background-image:
-      linear-gradient(180deg,
-        $staff-clr 0,
-        $staff-clr 1px,
-        transparent 1px,
-        transparent $vunit,
-        $staff-clr $vunit,
-        $staff-clr $vunit + 1px,
-        transparent $vunit + 1px,
-        transparent $vunit * 2,
-        $staff-clr $vunit * 2,
-        $staff-clr $vunit * 2 + 1px,
-        transparent $vunit * 2 + 1px,
-        transparent $vunit * 3,
-        $staff-clr $vunit * 3,
-        $staff-clr $vunit * 3 + 1px,
-        transparent $vunit * 3 + 1px,
-        transparent $vunit * 4,
-        $staff-clr $vunit * 4,
-        $staff-clr $vunit * 4 + 1px,
-        transparent $vunit * 4 + 1px);
+    // background-image:
+    //   linear-gradient(0deg,
+    //     $staff-clr 0,
+    //     $staff-clr 1px,
+    //     transparent 1px,
+    //     transparent $vunit,
+    //     $staff-clr $vunit,
+    //     $staff-clr $vunit + 1px,
+    //     transparent $vunit + 1px,
+    //     transparent $vunit * 2,
+    //     $staff-clr $vunit * 2,
+    //     $staff-clr $vunit * 2 + 1px,
+    //     transparent $vunit * 2 + 1px,
+    //     transparent $vunit * 3,
+    //     $staff-clr $vunit * 3,
+    //     $staff-clr $vunit * 3 + 1px,
+    //     transparent $vunit * 3 + 1px,
+    //     transparent $vunit * 4,
+    //     $staff-clr $vunit * 4,
+    //     $staff-clr $vunit * 4 + 1px,
+    //     transparent $vunit * 4 + 1px);
     background-size: 100% $gap + $vunit * 4
   }
   .bouttons{
-    padding: 30px;
+    padding: 32px;
+    /* margin: 5px; */
     display: flex;
-    justify-content: space-around;
-      // width: 120px;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
     input{
           height: 50px;
           width: 50px

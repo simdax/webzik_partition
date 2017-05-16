@@ -33,32 +33,22 @@
 }
 
 .note{
-  /* height is thin */
-  height: 50px;
-  width: 100px;
-  /*negative is tricky, its du to transform rotation*/
-  // "no empty space"
-  margin: 0 -25px; 
-  -webkit-appearance: none;
-  transform: rotate(270deg) scaleX(2) translateX(-38px);
-  background-color: transparent;
-  // background-color: rgba(red,0.1);
+  // -webkit-appearance: none;
+  /*background-color: transparent;*/
+  background-color: rgba(red,0.1);
   outline: none;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-
-  // width: 200px;
-  cursor: pointer;
-}
-input[type=range]::-webkit-slider-thumb {
-  height: 35px;
-  width: 20px;
-  border-radius: 100%;
-  background: black;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -5px;
+  &::-webkit-slider-runnable-track {
+    cursor: pointer;
+  }
+  &[type=range]::-webkit-slider-thumb {
+    // height: 40px;
+    // width: 20px;
+    border-radius: 100%;
+    background: black;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px;
+    }
 }
 /*input[type=range]::-moz-range-track {
   width: 100%;
