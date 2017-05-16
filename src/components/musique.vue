@@ -117,10 +117,10 @@
     display: flex;
     flex-wrap: wrap;
     /* justify-content: space-between; */
-    input{
-          height: 50px;
-          width: 50px
-        }
+    // input{
+    //       height: 50px;
+    //       width: 50px
+    //     }
   }
 
 </style>
