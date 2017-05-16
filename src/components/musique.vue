@@ -78,10 +78,15 @@
       background-color: rgba(red,0.1);
       width: 45vw;
       height: 40vh;
-      // margin: 15px; 
+      margin: 5px; 
     }
   .part{
-    transform: rotate(270deg);
+    display: flex;
+    flex-wrap: wrap;
+    height: 25vh;
+    transform: rotate(-90deg);
+    box-shadow: 0 0 10px black;
+    background-size: 100% 115.2px;
     box-shadow: 0 0 10px black;
     // background-image:
     //   linear-gradient(0deg,
@@ -104,7 +109,7 @@
     //     $staff-clr $vunit * 4,
     //     $staff-clr $vunit * 4 + 1px,
     //     transparent $vunit * 4 + 1px);
-    background-size: 100% $gap + $vunit * 4
+    // background-size: 100% $gap + $vunit * 4
   }
   .bouttons{
     padding: 32px;

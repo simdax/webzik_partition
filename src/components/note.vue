@@ -35,6 +35,7 @@
 .note{
   // -webkit-appearance: none;
   /*background-color: transparent;*/
+  width: 100%;
   background-color: rgba(red,0.1);
   outline: none;
   &::-webkit-slider-runnable-track {
