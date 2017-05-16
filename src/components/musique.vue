@@ -13,8 +13,7 @@
 
 <script type="text/javascript">
 
-  import $ from 'jqueryui';
-
+  // import $ from 'jqueryui';
   import Morceau from './morceau.js';
 
   import Tone from 'tone';
@@ -31,7 +30,6 @@
           this.getChild(this.count-1).classList.remove("green");
           this.getChild(this.count).classList.add("green");     
           this.count += 1;
-          console.log(v);
           son.triggerAttackRelease(v,"4n",t);  
         }.bind(this),[],"4n"),
         melodie:[1,2,5,0,5,1],
