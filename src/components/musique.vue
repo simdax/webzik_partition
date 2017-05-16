@@ -6,6 +6,14 @@
     <div class="bouttons">
       <input type="button" value="play" @click="play">
       <input type="button" value="stop" @click="stop">
+      <select @change='musique.setTimbre($event.target.value)'>
+        <option>MonoSynth</option>
+        <option>AMSynth</option>
+        <option>FMSynth</option>
+        <option>MembraneSynth</option>
+        <option>NoiseSynth</option>
+        <option>PluckSynth</option>
+      </select>
     </div>
   </div>  
 </template>
@@ -26,15 +34,8 @@
     data(){
       return {
         count: 0,
-        sequence: new Tone.Sequence(function(t,v){
-          this.getChild(this.count-1).classList.remove("green");
-          this.getChild(this.count).classList.add("green");     
-          this.count += 1;
-          // console.log(v,t);
-          son.triggerAttackRelease(v,"4n",t);  
-        }.bind(this),[],"4n"),
         melodie:[1,2,5,0,5,1],
-        root:60
+        root:60,
       }
     },
     mounted(){
@@ -42,16 +43,6 @@
       this.children = this.$children.map((v)=>{ return v.$el });
       // console.log(this.melodie);
       this.musique = new Morceau(this.melodie,this.root,this);
-
-      this.sequence.removeAll();
-      this.melodie.forEach((v,i)=>{
-        this.sequence.add(i,v)
-      });
-      // this.a = new Morceau(this.sequence);
-      // var duration = this.a.getDuration();
-      // this.sequence.loopEnd = duration;
-      // this.sequence.loop = true;
-
       this.melodie = this.melodie.map((note)=>{
         return Tone.Frequency(note+this.root,"midi").toNote()
       })
@@ -86,7 +77,8 @@
 
   .io{
       display: inline-block;
-      background-color: rgba(255,02,0,0.1)
+      background-color: rgba(red,0.1);
+      margin: 10px; 
     }
   .part{
     height: 200px;
@@ -116,7 +108,14 @@
     background-size: 100% $gap + $vunit * 4
   }
   .bouttons{
-
-    }
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+      // width: 120px;
+    input{
+          height: 50px;
+          width: 50px
+        }
+  }
 
 </style>

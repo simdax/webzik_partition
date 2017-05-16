@@ -22,12 +22,6 @@ export default {
 
 <style>
 
-input[type=button]{
-  display: inline-block;
-  margin: auto;
-  width: 120px;
-  height: 120px;
-}
 
 #app {
 

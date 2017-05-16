@@ -20,6 +20,9 @@ let Morceau = function (m,root,parent) {
 };
 
 Morceau.prototype={
+  setTimbre(timbre){
+    this.son = new Tone[timbre]().toMaster();
+  },
   getDuration:function (){
     var times = [];
     this.sequence._events.forEach((v)=>{
