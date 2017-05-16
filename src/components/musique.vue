@@ -30,6 +30,7 @@
           this.getChild(this.count-1).classList.remove("green");
           this.getChild(this.count).classList.add("green");     
           this.count += 1;
+          console.log(v,t);
           son.triggerAttackRelease(v,"4n",t);  
         }.bind(this),[],"4n"),
         melodie:[1,2,5,0,5,1],
@@ -39,16 +40,17 @@
     mounted(){
       
       this.children = this.$children.map((v)=>{ return v.$el });
+      // console.log(this.melodie);
+      this.musique = new Morceau(this.melodie,this.root,this);
 
       this.sequence.removeAll();
       this.melodie.forEach((v,i)=>{
         this.sequence.add(i,v)
       });
-      this.sequence.loop=false;
-      this.a = new Morceau(this.sequence);
-      var duration = this.a.getDuration();
-      this.sequence.loopEnd = duration;
-      this.sequence.loop = true;
+      // this.a = new Morceau(this.sequence);
+      // var duration = this.a.getDuration();
+      // this.sequence.loopEnd = duration;
+      // this.sequence.loop = true;
 
       this.melodie = this.melodie.map((note)=>{
         return Tone.Frequency(note+this.root,"midi").toNote()
@@ -63,12 +65,12 @@
         this.sequence.at(index,Tone.Frequency(parseInt(val)+60,"midi").toNote());
       },
       stop(){
-        this.sequence.stop();
+        this.musique.sequence.stop();
         this.getChild(this.count-1).classList.remove("green");    
         this.count = 0;
       },
       play(){
-        this.sequence.start();
+        this.musique.sequence.start();
       }
     }
   }

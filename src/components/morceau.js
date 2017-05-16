@@ -1,8 +1,24 @@
 import Tone from 'tone';
 
-let Morceau = function (seq) {
-    this.sequence=seq;
+let Morceau = function (m,root,parent) {
+  
+  console.log(m);
+   this.son = new Tone.Synth().toMaster();
+  let mel = m.map((note)=>{
+    return Tone.Frequency(note+root,"midi").toNote()
+  });
+  this.sequence= new Tone.Sequence(function(t,v){
+    parent.getChild(parent.count-1).classList.remove("green");
+    parent.getChild(parent.count).classList.add("green");     
+    parent.count += 1;
+    console.log(v,t);
+    this.son.triggerAttackRelease(v,"4n",t);  
+  }.bind(this),mel,"4n");
+
+ this.sequence.loopEnd = this.getDuration();
+  this.sequence.loop = true;
 };
+
 Morceau.prototype={
   getDuration:function (){
     var times = [];
