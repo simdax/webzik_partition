@@ -77,8 +77,8 @@
   .boiteazik{
       // display: inline-block;
       background-color: rgba(red,0.1);
-      width: 45vw;
-      height: 40vh;
+      width: 45%;
+      height: 40%;
       margin: 15px; 
     }
   .part{
