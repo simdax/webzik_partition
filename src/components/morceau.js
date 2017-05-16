@@ -14,7 +14,7 @@ let Morceau = function (m,root,parent) {
       parent.count += 1;      
     }, t);
     console.log(v,t);
-     if (this.son instanceof Tone.Noise) {  this.son.triggerAttackRelease("4n",t);  }
+     if (this.son instanceof Tone.NoiseSynth) {  this.son.triggerAttackRelease("4n",t);  }
       else{
         this.son.triggerAttackRelease(v,"4n",t);  
       }

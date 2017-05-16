@@ -26,7 +26,6 @@
 
   import Tone from 'tone';
   var son = new Tone.Synth().toMaster();
-  Tone.Transport.start();
 
   import note from './note.vue';
   export default{

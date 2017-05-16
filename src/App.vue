@@ -9,6 +9,8 @@
 
 <script>
 import musique from './components/musique.vue';
+import Tone from 'tone';
+Tone.Transport.start();
 export default {
   components: {musique},
   name: 'app',
