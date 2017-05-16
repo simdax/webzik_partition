@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <musique>
-
-    </musique>
+    <musique></musique>
+    <musique></musique>
+    <musique></musique>
+    <musique></musique>
   </div>
 </template>
 
@@ -20,7 +21,19 @@ export default {
 </script>
 
 <style>
+
+input[type=button]{
+  display: inline-block;
+  margin: auto;
+  width: 120px;
+  height: 120px;
+}
+
 #app {
+
+  width: 100%;
+  height: 100%;
+
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

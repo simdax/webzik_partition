@@ -1,7 +1,7 @@
 <template id="">
   <div class="io">    
     <div class="part">
-      <note v-for="(v,k,i) in melodie" :index=k :note=v @change="update(k)"></note>
+      <note v-for="(v,k,i) in melodie" :index=k :key=i :note=v @change="update(k)"></note>
     </div>
     <div class="bouttons">
       <input type="button" value="play" @click="play">
@@ -34,7 +34,7 @@
           console.log(v);
           son.triggerAttackRelease(v,"4n",t);  
         }.bind(this),[],"4n"),
-        melodie:[1,2,3,1,0,5,1],
+        melodie:[1,2,5,0,5,1],
         root:60
       }
     },
@@ -89,7 +89,7 @@
       background-color: rgba(255,02,0,0.1)
     }
   .part{
-    height: 300px;
+    height: 200px;
     display: inline-block;
     box-shadow: 0 0 10px black;
     background-image:

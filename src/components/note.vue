@@ -26,7 +26,7 @@
   }
 </script>
 
-<style media="screen">
+<style media="screen" lang="scss">
  
 .green{
   background-color: green !important
@@ -34,25 +34,26 @@
 
 .note{
   /* height is thin */
-  height: 10px;
+  height: 50px;
   width: 100px;
   /*negative is tricky, its du to transform rotation*/
-  margin: 0 -30px; 
+  // "no empty space"
+  margin: 0 -25px; 
   -webkit-appearance: none;
-  transform: rotate(270deg) scaleX(2) translateX(-60px);
+  transform: rotate(270deg) scaleX(2) translateX(-38px);
   background-color: transparent;
+  // background-color: rgba(red,0.1);
   outline: none;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-  width: 500px;
-  height: 100%;
+
+  // width: 200px;
   cursor: pointer;
-  /*animate: 0.2s;*/
 }
 input[type=range]::-webkit-slider-thumb {
-  height: 20px;
-  width: 10px;
+  height: 35px;
+  width: 20px;
   border-radius: 100%;
   background: black;
   cursor: pointer;
