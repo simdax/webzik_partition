@@ -5,7 +5,7 @@ var http = require('http');
 
 // server
 var server = http.Server(app);
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3050');
 app.set('port', port);
 server.listen(port);
 // server.on('listening', onListening);
