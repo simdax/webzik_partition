@@ -88,28 +88,28 @@
     box-shadow: 0 0 10px black;
     background-size: 100% 115.2px;
     box-shadow: 0 0 10px black;
-    // background-image:
-    //   linear-gradient(0deg,
-    //     $staff-clr 0,
-    //     $staff-clr 1px,
-    //     transparent 1px,
-    //     transparent $vunit,
-    //     $staff-clr $vunit,
-    //     $staff-clr $vunit + 1px,
-    //     transparent $vunit + 1px,
-    //     transparent $vunit * 2,
-    //     $staff-clr $vunit * 2,
-    //     $staff-clr $vunit * 2 + 1px,
-    //     transparent $vunit * 2 + 1px,
-    //     transparent $vunit * 3,
-    //     $staff-clr $vunit * 3,
-    //     $staff-clr $vunit * 3 + 1px,
-    //     transparent $vunit * 3 + 1px,
-    //     transparent $vunit * 4,
-    //     $staff-clr $vunit * 4,
-    //     $staff-clr $vunit * 4 + 1px,
-    //     transparent $vunit * 4 + 1px);
-    // background-size: 100% $gap + $vunit * 4
+    background-image:
+      repeating-linear-gradient(90deg,
+        // $staff-clr 0,
+        // $staff-clr 1px,
+        // transparent 1px,
+        transparent $vunit,
+        $staff-clr $vunit,
+        $staff-clr $vunit + 1px,
+        transparent $vunit + 1px,
+        transparent $vunit * 2,
+        $staff-clr $vunit * 2,
+        $staff-clr $vunit * 2 + 1px,
+        transparent $vunit * 2 + 1px,
+        transparent $vunit * 3,
+        $staff-clr $vunit * 3,
+        $staff-clr $vunit * 3 + 1px,
+        transparent $vunit * 3 + 1px,
+        transparent $vunit * 4,
+        $staff-clr $vunit * 4,
+        $staff-clr $vunit * 4 + 1px,
+        transparent $vunit * 4 + 1px);
+    background-size: 100% $gap + $vunit * 4
   }
   .bouttons{
     padding: 32px;

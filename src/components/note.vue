@@ -33,17 +33,17 @@
 }
 
 .note{
-  // -webkit-appearance: none;
-  /*background-color: transparent;*/
+  -webkit-appearance: none;
+  background-color: transparent;
+  // background-color: rgba(red,0.1);
   width: 100%;
-  background-color: rgba(red,0.1);
   outline: none;
   &::-webkit-slider-runnable-track {
     cursor: pointer;
   }
   &[type=range]::-webkit-slider-thumb {
-    // height: 40px;
-    // width: 20px;
+    height: 10px;
+    width: 10px;
     border-radius: 100%;
     background: black;
     cursor: pointer;
