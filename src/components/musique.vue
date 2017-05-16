@@ -31,9 +31,11 @@
           this.getChild(this.count-1).classList.remove("green");
           this.getChild(this.count).classList.add("green");     
           this.count += 1;
+          console.log(v);
           son.triggerAttackRelease(v,"4n",t);  
         }.bind(this),[],"4n"),
         melodie:[1,2,3,1,0,5,1],
+        root:60
       }
     },
     mounted(){
@@ -49,6 +51,10 @@
       var duration = this.a.getDuration();
       this.sequence.loopEnd = duration;
       this.sequence.loop = true;
+
+      this.melodie = this.melodie.map((note)=>{
+        return Tone.Frequency(note+this.root,"midi").toNote()
+      })
     },
     methods:{
       getChild(i){
@@ -56,7 +62,7 @@
         return this.children[index];
       },
       update(index,val){
-        this.sequence.at(index,parseInt(val));
+        this.sequence.at(index,Tone.Frequency(parseInt(val)+60,"midi").toNote());
       },
       stop(){
         this.sequence.stop();
