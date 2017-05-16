@@ -38,7 +38,7 @@
       }
     },
     mounted(){
-      
+
       this.children = this.$children.map((v)=>{ return v.$el });
       // console.log(this.melodie);
       this.musique = new Morceau(this.melodie,this.root,this);
@@ -75,21 +75,27 @@
   $staff-clr: #999;
 
   .boiteazik{
-      background-color: rgba(red,0.1);
-      width: 45vw;
-      height: 40vh;
-      margin: 5px; 
-    }
-  .part{
-    display: flex;
-    flex-wrap: wrap;
-    height: 25vh;
-    transform: rotate(-90deg);
-    box-shadow: 0 0 10px black;
-    background-size: 100% 115.2px;
-    box-shadow: 0 0 10px black;
-    background-image:
-      repeating-linear-gradient(90deg,
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   background-color: rgba(red,0.1);
+   width: 45vw;
+   height: 45vh;
+   margin: 5px; 
+ }
+ .part{
+  display: flex;
+  flex-wrap: wrap;
+    height: 23vh;
+    width: 27vh;
+  align-self: center;
+  transform: rotate(-90deg);
+
+
+  background-size: 100% 115.2px;
+  box-shadow: 0 0 10px black;
+  background-image:
+  repeating-linear-gradient(90deg,
         // $staff-clr 0,
         // $staff-clr 1px,
         // transparent 1px,
@@ -109,18 +115,13 @@
         $staff-clr $vunit * 4,
         $staff-clr $vunit * 4 + 1px,
         transparent $vunit * 4 + 1px);
-    background-size: 100% $gap + $vunit * 4
-  }
-  .bouttons{
-    padding: 32px;
-    /* margin: 5px; */
+  background-size: 100% $gap + $vunit * 4
+}
+.bouttons{
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
-    // input{
-    //       height: 50px;
-    //       width: 50px
-    //     }
+    height: 8vh;
+    justify-content: center;
   }
 
 </style>
