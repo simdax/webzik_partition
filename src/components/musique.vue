@@ -31,6 +31,7 @@
           this.getChild(this.count-1).classList.remove("green");
           this.getChild(this.count).classList.add("green");     
           this.count += 1;
+          son.triggerAttackRelease(v,"4n",t);  
         }.bind(this),[],"4n"),
         melodie:[1,2,3,1,0,5,1],
       }

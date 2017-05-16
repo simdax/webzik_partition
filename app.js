@@ -8,7 +8,7 @@ var server = http.Server(app);
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 server.listen(port);
-server.on('listening', onListening);
+// server.on('listening', onListening);
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -26,13 +26,13 @@ function normalizePort(val) {
   return false;
 }
 
-function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  // debug('Listening on ' + bind);
-}
+// function onListening() {
+//   var addr = server.address();
+//   var bind = typeof addr === 'string'
+//     ? 'pipe ' + addr
+//     : 'port ' + addr.port;
+//   // debug('Listening on ' + bind);
+// }
 
 app.get('/', function (req, res) {
   res.sendFile( __dirname + '/index.html')
