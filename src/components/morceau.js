@@ -3,6 +3,7 @@ import Tone from 'tone';
 let Morceau = function (m,root,parent) {
   
   console.log(m);
+  this.root = root;
    this.son = new Tone.Synth().toMaster();
   let mel = m.map((note)=>{
     return Tone.Frequency(note+root,"midi").toNote()
@@ -20,12 +21,21 @@ let Morceau = function (m,root,parent) {
       }
   }.bind(this),mel,"4n");
 
- this.sequence.loopEnd = this.getDuration();
+  this.sequence.loopEnd = this.getDuration();
   this.sequence.loop = true;
 };
 
 Morceau.prototype={
+  transform(note){
+    return  Tone.Frequency(note+this.root,"midi").toNote()
+  },
   setTimbre(timbre){
+    this.son = new Tone[timbre]().toMaster();
+  },
+  addNote(note){
+    this.sequence.add(this.transform(note));
+  },
+  removeNote(){
     this.son = new Tone[timbre]().toMaster();
   },
   getDuration:function (){

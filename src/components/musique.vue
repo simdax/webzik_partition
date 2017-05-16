@@ -14,6 +14,8 @@
         <option>NoiseSynth</option>
         <option>PluckSynth</option>
       </select>
+      <input type="button" value="plus" @click="addNote">
+      <input type="button" value="moins" @click="removeNote">
     </div>
   </div>  
 </template>
@@ -38,16 +40,34 @@
       }
     },
     mounted(){
-
       this.children = this.$children.map((v)=>{ return v.$el });
-      // console.log(this.melodie);
+      // TODO separate this and drawing function from tone loop 
       this.musique = new Morceau(this.melodie,this.root,this);
       this.melodie = this.melodie.map((note)=>{
         return Tone.Frequency(note+this.root,"midi").toNote()
-      })
+      });
+      this.$on('new', ()=>{console.log("io");})
     },
     methods:{
+      addNote(){
+        this.musique.addNote(0);
+        this.melodie.push(0);
+        // TODO bof ???
+        setTimeout(()=>{
+          let newEl = this.$children[this.$children.length-1].$el;
+          console.log(this.children[this.children.length -1] === newEl);
+          console.log(this.children[this.children.length -1] == newEl);
+          this.children.push(this.$children[this.$children.length-1].$el);
+          console.log(this.children);          
+        }, 50)
+      },
+      removeNote(){
+        this.musique.removeNote(this.melodie.length);
+        this.melodie = this.melodie.slice(0,-1);
+        this.children = this.children.slice(0,-1);
+      },
       getChild(i){
+        console.log(i);
         var index = Math.abs(i % this.melodie.length);
         return this.children[index];
       },
@@ -60,12 +80,7 @@
         this.count = 0;
       },
       play(){
-        // Tone.Transport.schedule((t)=>{
-        //   console.log(t);
-        //    let bob = new Tone.TimelineBase(t)
-        //    console.log(bob);
-        // })
-          this.musique.sequence.start("@1n");
+        this.musique.sequence.start("@1n");
       }
     }
   }
@@ -91,8 +106,8 @@
  .part{
   display: flex;
   flex-wrap: wrap;
-    height: 23vh;
-    width: 27vh;
+  height: 23vh;
+  width: 27vh;
   align-self: center;
   transform: rotate(-90deg);
 
@@ -123,10 +138,10 @@
   background-size: 100% $gap + $vunit * 4
 }
 .bouttons{
-    display: flex;
-    flex-wrap: wrap;
-    height: 8vh;
-    justify-content: center;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  height: 8vh;
+  justify-content: center;
+}
 
 </style>

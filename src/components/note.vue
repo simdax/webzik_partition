@@ -15,6 +15,7 @@
     },
     mounted(){
       this.n=this.note;
+      this.$emit("new",this.$el);
     },
     methods:{
     },
