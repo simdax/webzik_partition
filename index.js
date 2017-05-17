@@ -44,6 +44,6 @@ app.get('/', function (req, res) {
 });
 app.use('/dist', express.static(__dirname +'/dist'));
 
-app.listen(port, function () {
-  console.log('Example app listening on port'+port) 
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000') 
 })
