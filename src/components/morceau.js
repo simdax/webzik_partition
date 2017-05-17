@@ -1,8 +1,8 @@
 import Tone from 'tone';
 import _ from 'lodash';
 
-let Morceau = function (m,root,parent) {
-  
+let Morceau = function (m,root,scale,parent) {
+  this.scale = scale;
   this.root = root;
   this.son = new Tone.Synth().toMaster();
   let mel = m.map((note)=>{
@@ -25,7 +25,7 @@ let Morceau = function (m,root,parent) {
 
 Morceau.prototype={
   transform(note){
-    return  Tone.Frequency(note+this.root,"midi").toNote()
+    return  Tone.Frequency(this.scale[note]+this.root,"midi").toNote()
   },
   addNote(note){
     console.log(this.sequence.length);
