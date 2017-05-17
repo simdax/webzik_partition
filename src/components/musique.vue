@@ -25,7 +25,7 @@
 
   // import $ from 'jqueryui';
   import Morceau from './morceau.js';
-
+  import _ from 'lodash';
   import Tone from 'tone';
   var son = new Tone.Synth().toMaster();
 
@@ -35,8 +35,9 @@
     data(){
       return {
         count: 0,
-        melodie:[1,2,5,0,5,1],
+        melodie: _.times(6, () => _.random(0,7)),
         root:60,
+        scale:[0,2,4,5,7,9,11]
       }
     },
     mounted(){
@@ -50,24 +51,22 @@
     },
     methods:{
       addNote(){
-        this.musique.addNote(0);
-        this.melodie.push(0);
-        // TODO bof ???
+        var note = _.random(0,7);
+        this.musique.addNote(note);
+        this.melodie.push(note);
+        // TODO bof ??? because firts population is slow
+        // use event ?
         setTimeout(()=>{
           let newEl = this.$children[this.$children.length-1].$el;
-          console.log(this.children[this.children.length -1] === newEl);
-          console.log(this.children[this.children.length -1] == newEl);
-          this.children.push(this.$children[this.$children.length-1].$el);
-          console.log(this.children);          
+          this.children.push(newEl);
         }, 50)
       },
       removeNote(){
-        this.musique.removeNote(this.melodie.length);
+        this.musique.removeNote();
         this.melodie = this.melodie.slice(0,-1);
         this.children = this.children.slice(0,-1);
       },
       getChild(i){
-        console.log(i);
         var index = Math.abs(i % this.melodie.length);
         return this.children[index];
       },
