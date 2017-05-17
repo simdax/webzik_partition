@@ -3,6 +3,7 @@
 </template>
 
 <script type="text/javascript">
+
   export default{
     props:{
       note:{default:0},
@@ -16,8 +17,6 @@
     mounted(){
       this.n=this.note;
       this.$emit("new",this.$el);
-    },
-    methods:{
     },
     watch:{
       n(){

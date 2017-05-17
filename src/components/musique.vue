@@ -1,9 +1,9 @@
 <template id="">
   <div class="boiteazik">    
-    <div class="part">
-      <note v-for="(v,k,i) in melodie" :index=k :key=i :note=v @change="update(k)"></note>
+    <div  class="part">
+      <note @new='newChild' v-for="(v,k,i) in melodie" :index=k :key=i :note=v @change="update(k)"></note>
     </div>
-    <div class="bouttons">
+    <div  class="bouttons">
       <input type="button" value="play" @click="play">
       <input type="button" value="stop" @click="stop">
       <select @change='musique.setTimbre($event.target.value)'>
@@ -37,29 +37,22 @@
         count: 0,
         melodie: _.times(6, () => _.random(0,7)),
         root:60,
-        scale:[0,2,4,5,7,9,11]
+        scale:[0,2,4,5,7,9,11],
+        musique:0,
+        children:[]
       }
     },
     mounted(){
-      this.children = this.$children.map((v)=>{ return v.$el });
-      // TODO separate this and drawing function from tone loop 
-      this.musique = new Morceau(this.melodie,this.root,this);
-      this.melodie = this.melodie.map((note)=>{
-        return Tone.Frequency(note+this.root,"midi").toNote()
-      });
-      this.$on('new', ()=>{console.log("io");})
+      this.musique = new Morceau(this.melodie,this.root,this.scale, this);
     },
     methods:{
       addNote(){
         var note = _.random(0,7);
         this.musique.addNote(note);
         this.melodie.push(note);
-        // TODO bof ??? because firts population is slow
-        // use event ?
-        setTimeout(()=>{
-          let newEl = this.$children[this.$children.length-1].$el;
-          this.children.push(newEl);
-        }, 50)
+      },
+      newChild(newEl){
+        this.children.push(newEl);
       },
       removeNote(){
         this.musique.removeNote();
