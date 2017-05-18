@@ -1,11 +1,13 @@
-var path = require('path')
-var webpack = require('webpack')
-var fs = require('fs');
+var path = require('path');
+var webpack = require('webpack');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 
 module.exports = {
-  entry: './src/main.js',
-
+  entry: [
+    './src/main.js',
+    'webpack-hot-middleware/client',
+  ],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -35,6 +37,10 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader','css-loader']
       }
     ]
   },
@@ -43,9 +49,16 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
+  plugins:[
+      new webpack.HotModuleReplacementPlugin(),
+  ],
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    proxy:{
+      target: 'http://localhost:3000',
+      secure: false
+    }
   },
   performance: {
     hints: false

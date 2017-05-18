@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-  <div v-if="isConnected">
-    T'es connecté !
-  </div>
-  <button @click="pingServer">PING</button>
-    <musique></musique>
-    <musique></musique>
-    <musique></musique>
-    <musique></musique>
+  <header>
+    <div v-if="isConnected">
+      T'es connecté !
+    </div>
+  </header>
+    <div class="musique">
+      <musique></musique>
+      <musique></musique>
+      <musique></musique>
+      <musique></musique>      
+    </div>
     <div class="chat">
-      <textarea v-model="msg"></textarea>
-      <input type="button" v-model="msg" @submit="submit">
-      <div class="result"></div>      
+      <textarea @keydown.13="submit" v-model="msg" placeholder="poutre du texte"></textarea>
+      <div class="discussion">
+        <ul>
+          <li v-for="msg in discussion" v-text='msg'></li>
+        </ul>
+      </div>      
     </div>
   </div>
 </template>
@@ -19,57 +25,51 @@
 <script>
 
   import musique from './components/musique.vue';
+  import {callbacks,socketObj} from './socket.js';
 
   export default {
     components: {musique},
-    name: 'app',
-    methods:{
-      submit(){
-        console.log(this.msg);
-        io.$emit('newMsg',this.msg);
-      }
-    },
+    name: 'pa',
     data(){
       return {
         msg: "",
+        discussion: [],
         isConnected: false
       }
     },
-    socket: {
-      connect() {
-      // Fired when the socket connects.
-      this.isConnected = true;
+    socket: socketObj(this),
+    created(){
+      callbacks(this);
     },
-
-    disconnect() {
-      this.isConnected = false;
-    },
-
-    // Fired when the server sends something on the "messageChannel" channel.
-    messageChannel(data) {
-      this.socketMessage = data
+    methods: {
+      submit(){
+        if (this.msg.length > 0) {
+          this.$socket.emit('newMsg', this.msg)
+          this.msg = '';
+        }
+      }
     }
-  },
-
-  methods: {
-    pingServer() {
-      // Send the "pingServer" event to the server.
-      this.$socket.emit('pingServer', 'PING!')
-    }
-  }
 }
 </script>
 
 <style lang="sass">
 
-  .chat
-    background-color: rgba(0,0,0,0.1)
+.dicussion
+  overflow: scroll
 
-  #app 
-    display: flex
-    flex-wrap: wrap
-    font-family: 'Avenir', Helvetica, Arial, sans-serif
-    -webkit-font-smoothing: antialiased
-    -moz-osx-font-smoothing: grayscale
+.chat
+  display: flex
+  background-color: rgba(0,0,0,0.1)
+
+main
+  display: flex
+  flex-wrap: wrap
+
+#app 
+  display: flex
+  flex-direction: column
+  font-family: 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
 
 </style>

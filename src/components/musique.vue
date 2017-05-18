@@ -3,6 +3,12 @@
     <div  class="part">
       <note @new='newChild' v-for="(v,k,i) in melodie" :index=k :key=i :note=v @change="update(k)"></note>
     </div>
+    <form>    
+      <label>
+        Scale : 
+        <input type="number" value="triton">      
+      </label>
+    </form>
     <div  class="bouttons">
       <input type="button" value="play" @click="play">
       <input type="button" value="stop" @click="stop">
@@ -23,13 +29,12 @@
 
 <script type="text/javascript">
 
-  // import $ from 'jqueryui';
-  import Morceau from './morceau.js';
-  import _ from 'lodash';
   import Tone from 'tone';
-  var son = new Tone.Synth().toMaster();
+  import _ from 'lodash';
 
+  import Morceau from './morceau.js';
   import note from './note.vue';
+
   export default{
     components:{note},
     data(){
@@ -37,6 +42,7 @@
         count: 0,
         melodie: _.times(6, () => _.random(0,7)),
         root:60,
+        triton: 1,
         scale:[0,2,4,5,7,9,11],
         musique:0,
         children:[]
@@ -58,17 +64,20 @@
         this.musique.removeNote();
         this.melodie = this.melodie.slice(0,-1);
         this.children = this.children.slice(0,-1);
+        if(this.children.length == 0 ){this.stop()}
       },
-      getChild(i){
-        var index = Math.abs(i % this.melodie.length);
-        return this.children[index];
-      },
-      update(index,val){
-        this.musique.sequence.at(index,Tone.Frequency(parseInt(val)+60,"midi").toNote());
+      paint(i){
+        var i = Math.floor(i*this.children.length);
+        var last = i-1;
+        if (i==0) {last=this.children.length-1}
+        this.children[i].classList.add('green')
+        this.children[last].classList.remove('green')
       },
       stop(){
+        // this.musique.sequence.cancel();
         this.musique.sequence.stop();
-        this.getChild(this.count-1).classList.remove("green");    
+        Tone.Draw.cancel();
+        this.children[Math.abs((this.count-1)%this.children.length)].classList.remove("green");
         this.count = 0;
       },
       play(){
@@ -110,30 +119,37 @@
   repeating-linear-gradient(90deg,
         // $staff-clr 0,
         // $staff-clr 1px,
-        // transparent 1px,
-        transparent $vunit,
+        // transthis 1px,
+        transthis $vunit,
         $staff-clr $vunit,
         $staff-clr $vunit + 1px,
-        transparent $vunit + 1px,
-        transparent $vunit * 2,
+        transthis $vunit + 1px,
+        transthis $vunit * 2,
         $staff-clr $vunit * 2,
         $staff-clr $vunit * 2 + 1px,
-        transparent $vunit * 2 + 1px,
-        transparent $vunit * 3,
+        transthis $vunit * 2 + 1px,
+        transthis $vunit * 3,
         $staff-clr $vunit * 3,
         $staff-clr $vunit * 3 + 1px,
-        transparent $vunit * 3 + 1px,
-        transparent $vunit * 4,
+        transthis $vunit * 3 + 1px,
+        transthis $vunit * 4,
         $staff-clr $vunit * 4,
         $staff-clr $vunit * 4 + 1px,
-        transparent $vunit * 4 + 1px);
+        transthis $vunit * 4 + 1px);
   background-size: 100% $gap + $vunit * 4
 }
 .bouttons{
   display: flex;
   flex-wrap: wrap;
-  height: 8vh;
+  height: 5vh;
   justify-content: center;
+  &:first-child{
+    border-radius: 10px 10px 5px 5px
+  }
 }
+  label{
+    padding: 10px; 
+    background-color: grey;
+  }
 
 </style>

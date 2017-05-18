@@ -1,5 +1,5 @@
 <template id="note">
-    <input  class="note" min=0 max=15 type="range" step="1" v-model="n" >
+    <input  class="note" min=0 max=8 type="range" step="1" v-model="n" >
 </template>
 
 <script type="text/javascript">
@@ -20,7 +20,7 @@
     },
     watch:{
       n(){
-        this.$parent.update(this.index,this.n);
+        this.$parent.musique.update(this.index,this.n);
       }
     }
   }
@@ -32,24 +32,43 @@
   background-color: green !important
 }
 
+@mixin buttonSlider{
+  cursor: pointer;  
+}
+@mixin trackSlider{
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  background: black;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+}
+
 .note{
   -webkit-appearance: none;
   background-color: transparent;
   // background-color: rgba(red,0.1);
   width: 100%;
   outline: none;
-  &::-webkit-slider-runnable-track {
-    cursor: pointer;
+  &input[type=range]::-webkit-slider-runnable-track{
+    @include buttonSlider;
   }
-  &[type=range]::-webkit-slider-thumb {
-    height: 10px;
-    width: 10px;
-    border-radius: 100%;
-    background: black;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -5px;
-    }
+  &input[type=range]::-moz-range-track {
+    @include buttonSlider;
+  }
+  &input[type=range]::-webkit-slider-thumb{
+      height: 10px;
+      width: 10px;
+      border-radius: 100%;
+      background: black;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -5px;
+  }
+  &input[type=range]::-moz-range-thumb {
+    @include trackSlider;
+  }    
 }
 /*input[type=range]::-moz-range-track {
   width: 100%;
