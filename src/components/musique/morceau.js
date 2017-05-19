@@ -5,11 +5,24 @@ let Morceau = function (m,root,scale,parent) {
   this.scale = scale;
   this.root = root;
   this.son = new Tone.Synth().toMaster();
+  this.swing = [0.5,0.5,-0.5,0,0];
   let mel = m.map((note)=>{
     return this.transform(note)
   });
   this.sequence= new Tone.Sequence(function(t,v){
+
+    var index = Math.floor(this.sequence.progress * this.sequence.length);
+    console.log(index);
+    var swing = this.swing[index];
+    var dur = new Tone.Time("4n");
     // draw
+    if (swing) {
+      t = t + swing
+      dur = dur.mult(swing);
+    };
+    dur =dur.toNotation();
+      console.log();
+
     Tone.Draw.schedule(function(){
       parent.paint(parseFloat(this.sequence.progress));
     }.bind(this), t);
