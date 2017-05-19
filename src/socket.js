@@ -1,7 +1,7 @@
 
 let cbacks={
   newMsg(msg){
-    this.discussion.push(msg)
+    this.$refs.chat.discussion.push(msg)
     if (this.discussion.length > 10) {
       this.discussion.splice(0,1)
     }

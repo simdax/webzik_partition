@@ -34,6 +34,9 @@
 
 @mixin buttonSlider{
   cursor: pointer;  
+  background-color: black;
+  width: 10px;
+  height: 10px;
 }
 @mixin trackSlider{
   height: 10px;
@@ -52,10 +55,10 @@
   width: 100%;
   outline: none;
   &input[type=range]::-webkit-slider-runnable-track{
-    @include buttonSlider;
+    @include buttonSlider();
   }
   &input[type=range]::-moz-range-track {
-    @include buttonSlider;
+    @include buttonSlider();
   }
   &input[type=range]::-webkit-slider-thumb{
       height: 10px;
@@ -67,7 +70,7 @@
       margin-top: -5px;
   }
   &input[type=range]::-moz-range-thumb {
-    @include trackSlider;
+    @include trackSlider();
   }    
 }
 /*input[type=range]::-moz-range-track {

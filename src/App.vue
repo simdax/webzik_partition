@@ -1,75 +1,74 @@
 <template>
   <div id="app">
-  <header>
-    <div v-if="isConnected">
-      T'es connecté !
-    </div>
-  </header>
-    <div class="musique">
-      <musique></musique>
-      <musique></musique>
-      <musique></musique>
-      <musique></musique>      
-    </div>
-    <div class="chat">
-      <textarea @keydown.13="submit" v-model="msg" placeholder="poutre du texte"></textarea>
-      <div class="discussion">
-        <ul>
-          <li v-for="msg in discussion" v-text='msg'></li>
-        </ul>
-      </div>      
-    </div>
+    <header>
+      <h1>Go go Zi Zik</h1>
+     <addBoiteZik @add="nb=nb+1"></addBoiteZik>
+    </header>
+    <main>
+      <musique v-for='n in nb' :key='n' :i="n.toString()"></musique>
+    </main>
+    <footer>
+      <chat ref="chat"></chat>  
+    </footer>
   </div>
 </template>
 
 <script>
 
-  import musique from './components/musique.vue';
+  import musique from './components/musique/main.vue';
+  import chat from  './components/chat.vue';
+  import addBoiteZik from  './components/header.vue';
   import {callbacks,socketObj} from './socket.js';
 
   export default {
-    components: {musique},
-    name: 'pa',
+    components: {musique, addBoiteZik, chat},
+    name: 'app',
     data(){
       return {
-        msg: "",
-        discussion: [],
-        isConnected: false
+        nb: 2,
+        isConnected: false,
+        discussion:[],
       }
     },
     socket: socketObj(this),
     created(){
       callbacks(this);
+      this.$on('addZizik',()=> console.log("456"))
     },
-    methods: {
-      submit(){
-        if (this.msg.length > 0) {
-          this.$socket.emit('newMsg', this.msg)
-          this.msg = '';
-        }
-      }
-    }
-}
+  }
 </script>
 
 <style lang="sass">
 
-.dicussion
-  overflow: scroll
+  @import url("//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,300,400")
 
-.chat
-  display: flex
-  background-color: rgba(0,0,0,0.1)
+  body  
+    font-family: 'Roboto'
 
-main
-  display: flex
-  flex-wrap: wrap
+  header  
+    background-color: rgba(blue, 0.1)
+    h1
+      text-align: center
+      font-size: 2rem
+      font-family: 'Montserrat'
+      
 
-#app 
-  display: flex
-  flex-direction: column
-  font-family: 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
+  main
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-around
+    font-size: 0.5rem
+
+  footer:not(.modal-footer)  
+    position: fixed
+    bottom: 0
+    width: 100vw
+
+  #app 
+    display: flex
+    flex-direction: column
+    font-family: 'Avenir', Helvetica, Arial, sans-serif
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
 
 </style>

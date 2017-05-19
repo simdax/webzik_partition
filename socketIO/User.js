@@ -4,6 +4,7 @@
 
   var callbacks = {
     newMsg:function (msg) {
+      console.log("reçu un niou message");
       this.io.emit('newMsg',msg)
     }
   };

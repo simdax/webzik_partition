@@ -3,26 +3,7 @@
     <div  class="part">
       <note @new='newChild' v-for="(v,k,i) in melodie" :index=k :key=i :note=v @change="update(k)"></note>
     </div>
-    <form>    
-      <label>
-        Scale : 
-        <input type="number" value="triton">      
-      </label>
-    </form>
-    <div  class="bouttons">
-      <input type="button" value="play" @click="play">
-      <input type="button" value="stop" @click="stop">
-      <select @change='musique.setTimbre($event.target.value)'>
-        <option>MonoSynth</option>
-        <option>AMSynth</option>
-        <option>FMSynth</option>
-        <option>MembraneSynth</option>
-        <option>NoiseSynth</option>
-        <option>PluckSynth</option>
-      </select>
-      <input type="button" value="plus" @click="addNote">
-      <input type="button" value="moins" @click="removeNote">
-    </div>
+      <settings :id='i'></settings>  
   </div>  
 </template>
 
@@ -32,11 +13,16 @@
   import Tone from 'tone';
   import _ from 'lodash';
 
+  // js
   import Morceau from './morceau.js';
+
+  //components
   import note from './note.vue';
+  import settings from './settings.vue';
 
   export default{
-    components:{note},
+    components:{note,settings},
+    props:['i'],
     data(){
       return {
         count: 0,
@@ -45,6 +31,7 @@
         triton: 1,
         scale:[0,2,4,5,7,9,11],
         musique:0,
+        timbres:['MonoSynth','AMSynth','FMSynth','MembraneSynth','NoiseSynth','PluckSynth'],
         children:[]
       }
     },
@@ -138,18 +125,5 @@
         transthis $vunit * 4 + 1px);
   background-size: 100% $gap + $vunit * 4
 }
-.bouttons{
-  display: flex;
-  flex-wrap: wrap;
-  height: 5vh;
-  justify-content: center;
-  &:first-child{
-    border-radius: 10px 10px 5px 5px
-  }
-}
-  label{
-    padding: 10px; 
-    background-color: grey;
-  }
 
 </style>

@@ -15,7 +15,7 @@ let Morceau = function (m,root,scale,parent) {
     }.bind(this), t);
 
     console.log(v);
-    //play
+
     if (this.son instanceof Tone.NoiseSynth) { this.son.triggerAttackRelease("4n",t);  }
     else{this.son.triggerAttackRelease(v,"4n",t);  }
   }.bind(this),mel,"4n");
@@ -26,7 +26,7 @@ Morceau.prototype={
   transform(note){
     var octave = Math.floor(note / this.scale.length);
     var degree = note % this.scale.length;
-    note = this.scale[degree*(octave+1)]+this.root;
+    note = this.scale[degree]+12*octave+this.root;
     return  Tone.Frequency(note,"midi").toNote()
   },
   addNote(note){

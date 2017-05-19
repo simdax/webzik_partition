@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = {
@@ -29,10 +30,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff2|woff)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
@@ -51,6 +52,7 @@ module.exports = {
   },
   plugins:[
       new webpack.HotModuleReplacementPlugin(),
+      new ExtractTextPlugin('style.css')
   ],
   devServer: {
     historyApiFallback: true,

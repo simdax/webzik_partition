@@ -21,5 +21,5 @@ app.get('/', function (req, res) {
 });
 
 
-app.use('/dist', express.static(__dirname +'/dist'));
-// require('./dev')(app);
+// app.use('/dist', express.static(__dirname +'/dist'));
+require('./dev')(app);
