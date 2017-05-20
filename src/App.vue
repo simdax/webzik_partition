@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <header>
       <h1>Go go Zi Zik</h1>
      <addBoiteZik @add="nb=nb+1"></addBoiteZik>
@@ -22,7 +22,7 @@
 
   export default {
     components: {musique, addBoiteZik, chat},
-    name: 'app',
+    name: 'soundBox',
     data(){
       return {
         nb: 2,

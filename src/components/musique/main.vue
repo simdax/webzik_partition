@@ -1,4 +1,4 @@
-<template id="">
+<template>
   <div class="boiteazik">    
     <div  class="part">
       <note @new='newChild' v-for="(v,k,i) in melodie" :index=k :key=i :note=v @change="update(k)"></note>
