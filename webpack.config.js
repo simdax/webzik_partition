@@ -52,7 +52,7 @@ module.exports = {
   },
   plugins:[
       new webpack.HotModuleReplacementPlugin(),
-      new ExtractTextPlugin('style.css')
+      new ExtractTextPlugin('/dist/style.css')
   ],
   devServer: {
     historyApiFallback: true,

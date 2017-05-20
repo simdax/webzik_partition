@@ -4,11 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <title>musique</title>
+  <link rel="stylesheet" type="text/css" href="dist/style.css">
 </head>
 <body>
   <script src="/socket.io/socket.io.js"></script>
-  <div id="app"></div>
+  <div id="app">
+  	<router-link to='/'></router-link>
+		<router-view></router-view>
+  </div>
   <script src="/dist/build.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="dist/style.css"> -->
 </body>
 </html>

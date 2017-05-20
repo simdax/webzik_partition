@@ -33,7 +33,6 @@
     socket: socketObj(this),
     created(){
       callbacks(this);
-      this.$on('addZizik',()=> console.log("456"))
     },
   }
 </script>
@@ -54,6 +53,7 @@
       
 
   main
+    background-color: red
     display: flex
     flex-wrap: wrap
     justify-content: space-around

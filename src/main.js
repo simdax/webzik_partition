@@ -15,7 +15,12 @@ import VueSocketIO from 'vue-socket.io';
 export const SocketInstance = io();
 Vue.use(VueSocketIO, SocketInstance);
 
+import routerVue from 'vue-router';
+Vue.use(routerVue);
+import router from './router'
+
 new Vue({
   el: '#app',
-  render: h => h(App),
+  router,
+  // render: h => h(App),
 })
